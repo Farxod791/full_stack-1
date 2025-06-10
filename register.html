@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Register - Dern-Support</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #e0e7ff 0%, #f0f4f8 100%);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; /* align-items o'rniga flex-start ishlatildi */
+      min-height: 100vh; /* Ekran balandligini ta'minlash uchun */
+      overflow-y: auto; /* Vertikal scroll imkoniyati */
+    }
+
+    .register-container {
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      max-width: 400px; /* Maksimal kenglik */
+      text-align: center;
+      margin: 1rem; /* Ekran chetlaridan bo'shliq */
+      animation: slideUp 0.5s ease-out;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .register-container h2 {
+      margin-bottom: 1.5rem;
+      color: #1a1a1a;
+      font-size: 1.75rem;
+      font-weight: 700;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: #2c3e50;
+      font-size: 0.9rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 0.85rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+      font-size: 0.95rem;
+      background: #fafafa;
+      transition: all 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+      border-color: #4f46e5;
+      background: #fff;
+      box-shadow: 0 0 8px rgba(79, 70, 229, 0.2);
+      outline: none;
+    }
+
+    .personality-group {
+      margin-bottom: 1.25rem;
+      text-align: left;
+    }
+
+    .personality-group label {
+      display: inline-flex;
+      align-items: center;
+      margin-right: 1.25rem;
+      font-weight: 500;
+      color: #2c3e50;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .personality-group input[type="radio"] {
+      margin-right: 0.5rem;
+      accent-color: #4f46e5;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.9rem;
+      border: none;
+      background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%);
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, #4338ca 0%, #6d28d9 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .login-link {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #4b5563;
+    }
+
+    .login-link a {
+      color: #4f46e5;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .login-link a:hover {
+      color: #4338ca;
+      text-decoration: underline;
+    }
+
+    .error-message {
+      color: #dc2626;
+      margin-bottom: 0.75rem;
+      font-size: 0.85rem;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Responsive dizayn */
+    @media (max-width: 480px) {
+      .register-container {
+        padding: 1.5rem;
+        width: 95%; /* Kichik ekranlarda kenglikni oshirish */
+        margin: 0.5rem;
+      }
+
+      .register-container h2 {
+        font-size: 1.5rem;
+      }
+
+      button {
+        padding: 0.8rem;
+        font-size: 0.95rem;
+      }
+    }
+
+    /* Katta ekranlar uchun optimallashtirish */
+    @media (min-width: 1200px) {
+      .register-container {
+        max-width: 450px; /* Katta ekranlarda biroz kattaroq */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="register-container">
+    <h2>Ro'yxatdan o'tish</h2>
+    <form id="registerForm">
+      <div class="error-message" id="errorMessage"></div>
+
+      <label for="firstName">Ism</label>
+      <input type="text" id="firstName" placeholder="Ismingizni kiriting" required />
+
+      <label for="lastName">Familiya</label>
+      <input type="text" id="lastName" placeholder="Familiyangizni kiriting" required />
+
+      <label for="email">Email manzilingiz</label>
+      <input type="email" id="email" placeholder="email@example.com" required />
+
+      <div class="personality-group">
+        <label>Shaxs turi:</label><br/>
+        <label><input type="radio" name="personality" value="jismoniy" checked /> Jismoniy shaxs</label>
+        <label><input type="radio" name="personality" value="yuridik" /> Yuridik shaxs</label>
+      </div>
+
+      <div id="companyNameContainer" style="display:none;">
+        <label for="companyName">Kompaniya nomi</label>
+        <input type="text" id="companyName" placeholder="Kompaniya nomini kiriting" />
+      </div>
+
+      <label for="password">Parol</label>
+      <input type="password" id="password" placeholder="Parolni kiriting" required />
+
+      <label for="confirmPassword">Parolni tasdiqlash</label>
+      <input type="password" id="confirmPassword" placeholder="Parolni qaytadan kiriting" required />
+
+      <button type="submit">Ro'yxatdan o'tish</button>
+    </form>
+    <div class="login-link">
+      Hisobingiz bormi? <a href="login.html">Kirish</a>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('registerForm');
+    const errorMessage = document.getElementById('errorMessage');
+    const personalityRadios = document.getElementsByName('personality');
+    const companyNameContainer = document.getElementById('companyNameContainer');
+    const companyNameInput = document.getElementById('companyName');
+
+    // Radio tugmalarga quloq solamiz
+    personalityRadios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        if (radio.value === 'yuridik' && radio.checked) {
+          companyNameContainer.style.display = 'block';
+          companyNameInput.setAttribute('required', 'required');
+        } else {
+          companyNameContainer.style.display = 'none';
+          companyNameInput.removeAttribute('required');
+          companyNameInput.value = '';
+        }
+      });
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const username = document.getElementById('firstName').value.trim();  // 'username' - backendga mos nom
+      const surname = document.getElementById('lastName').value.trim();    // 'surname' - backendga mos nom
+      const email = document.getElementById('email').value.trim();
+      const personality = [...personalityRadios].find(r => r.checked).value;
+      const company = companyNameInput.value.trim();          
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (password !== confirmPassword) {
+        errorMessage.textContent = "Parollar mos kelmayapti!";
+        return;
+      }
+      if (password.length < 6) {
+        errorMessage.textContent = "Parol kamida 6 ta belgidan iborat bo‘lishi kerak.";
+        return;
+      }
+
+      if (personality === 'yuridik' && companyName === '') {
+        errorMessage.textContent = "Iltimos, kompaniya nomini kiriting.";
+        return;
+      }
+
+      errorMessage.textContent = "";
+
+      const REGISTER_URL = 'http://localhost:4000/register';
+
+      const payload = {
+        username,
+        surname,
+        email,
+        personality,
+        company: personality === 'yuridik' ? company : null,
+        password,
+      };
+
+
+      if (personality === 'yuridik') {
+        payload.companyName = companyName;
+      }
+
+      fetch(REGISTER_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          alert("Ro'yxatdan o'tish muvaffaqiyatli! Iltimos, tizimga kiring.");
+          window.location.href = './login.html';
+        } else {
+          errorMessage.textContent = data.message || "Xatolik yuz berdi.";
+        }
+      })
+      .catch(() => {
+        errorMessage.textContent = "Server bilan bog‘lanishda xatolik yuz berdi.";
+      });
+
+    });
+  </script>
+
+</body>
+</html>
